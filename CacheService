@@ -1,0 +1,38 @@
+
+
+
+case "refresh-process":
+    if (!"".equals(subCmd)) {
+        // 장비별 프로세스 최종수정시간 메모리에 기록
+        setProcessRefreshInfo(subCmd, System.currentTimeMills());
+    } else {
+        setAllProcessRefreshInfo();
+    }
+    
+    
+break;
+
+
+
+
+
+private static Map<Sting, Long> processRefreshMap = new ConcurrentHashMap<String,Long>();
+
+private void setAllProcessRefreshInfo() {
+    try {
+        Map<String,Object> param = new HashMap<>();
+        param.put("sqlName", "sysmon.getProcessListAll.select");
+        List<Map<String,Object>> processAllList = getSqlSelectList(param);
+        
+        if (proccessAllList != null) {
+            final long currMills = System.currentTimeMills() + 6000;
+            
+            processAllList.stream().forEach(item -> {
+                final deviceId = item.get("DEVICE_ID").toString();
+                processRefreshMap.put(deviceId, currMills);
+            });
+        }
+    } catch (Exception e) {
+    
+    }
+}
