@@ -2,7 +2,15 @@ import java.util.Set;
 import java.util.Map.Entry;
 
 public class tcagntClient {
-  
+  /*
+  THROTTLE_BY_NUMS
+    - YN : CHANNEL 다운횟수로 한번만 알람을 보낼지 여부
+    - THRESHOLD : 알람 임계치 채널 갯수
+    - KEYWORD : 채널알람인지 여부를 판단할 키워드
+    - CHANNEL_LIMIT : 총 채널 갯수
+    - CLEAR_KEYWORD : 해제 키워드 정의
+    - CLEAR_PREFIX : 해제 로그 키워드일 경우, 알람메세지에 해제알람인지 명확히 구분하기 위해 Prefix를 정의한 값 (텔레캡스 어드민 UI에서도 동일하게 적용되어야 함. / critlog.ini는 포함시키지 않음.)
+  */
   private static boolean isThrottleByNums = false;
   private static int throttleByNumsThreshold = 15;
   private static String throttleByNumsKeyword = "";
